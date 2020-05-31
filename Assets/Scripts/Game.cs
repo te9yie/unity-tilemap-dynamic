@@ -46,19 +46,19 @@ public class Game : MonoBehaviour
     void Update()
     {
         var nextPos = playerPos;
-        if (Input.GetKeyDown(KeyCode.H))
+        if (Input.GetKeyDown(KeyCode.H) || Input.GetKeyDown(KeyCode.Y) || Input.GetKeyDown(KeyCode.B))
         {
             --nextPos.x;
         }
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.L) || Input.GetKeyDown(KeyCode.U) || Input.GetKeyDown(KeyCode.N))
         {
             ++nextPos.x;
         }
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown(KeyCode.N))
         {
             --nextPos.y;
         }
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.Y) || Input.GetKeyDown(KeyCode.U))
         {
             ++nextPos.y;
         }
