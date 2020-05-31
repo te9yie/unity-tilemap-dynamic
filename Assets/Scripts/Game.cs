@@ -7,7 +7,8 @@ public class Game : MonoBehaviour
     [SerializeField] private Tilemap map = default;
     [SerializeField] private Tile wall = default;
     [SerializeField] private Tile pass = default;
-    [SerializeField] private GameObject player = default;
+    [SerializeField] private GameObject playerObject = default;
+    [SerializeField] private GameObject cameraObject = default;
 
     private Vector3Int playerPos = new Vector3Int();
 
@@ -16,7 +17,8 @@ public class Game : MonoBehaviour
         Assert.IsNotNull(map);
         Assert.IsNotNull(wall);
         Assert.IsNotNull(pass);
-        Assert.IsNotNull(player);
+        Assert.IsNotNull(playerObject);
+        Assert.IsNotNull(cameraObject);
         {
             var minX = -3;
             var maxX = 3;
@@ -39,7 +41,8 @@ public class Game : MonoBehaviour
         }
         {
             var loc = map.GetCellCenterLocal(playerPos);
-            player.transform.position = loc;
+            playerObject.transform.position = loc;
+            cameraObject.transform.position = loc;
         }
     }
 
@@ -68,8 +71,14 @@ public class Game : MonoBehaviour
             {
                 playerPos = nextPos;
                 var loc = map.GetCellCenterLocal(playerPos);
-                player.transform.position = loc;
+                playerObject.transform.position = loc;
             }
+        }
+        {
+            var playerPos = playerObject.transform.position;
+            var cameraPos = cameraObject.transform.position;
+            var pos = (playerPos - cameraPos) * 0.1f + cameraPos;
+            cameraObject.transform.position = pos;
         }
     }
 }
